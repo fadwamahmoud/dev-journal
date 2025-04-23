@@ -38,11 +38,11 @@ class Rectangle extends BaseObject {
     // The value of "this" can be re-bound by changing the context
     // using bind or call.
     // -> Value of "this" defaults to the class instance
-    return this.width * this.length; 
+    return this.width * this.length;
   };
 
   calcSizeAsArrowFunction = () => {
-    // This is an arrow function which has a constantly-bound "this" keyword, 
+    // This is an arrow function which has a constantly-bound "this" keyword,
     // it is not possible to re-bind afterward.
     // The type of "this" is always the type of the containing class.
     // Changing the context using bind or call will have no effect
@@ -60,7 +60,7 @@ Tags: classes, closure, this
 
 Command for printing out current architecture:
 
-`` 
+``
 
 Tags: ubuntu, architecture, cmd
 
@@ -74,7 +74,7 @@ git checkout <branch-you-want-to-rebase(change its history)>
 git rebase -i <branch-you-want-to-rebase-to>
 ```
 
-1st screen: pick or squash the commits 
+1st screen: pick or squash the commits
 ctrl S + ctrl Q
 
 2nd screen: change or write a new commit msg
@@ -89,7 +89,7 @@ tags: rebase, git, squash
 - 12 factor app
 1. Codebase: app must have only one repo or multiple repos that share same root commit
 2. Dependencies: app must have a dependency declaration manifest (package.json) and a dependency isolation tool (npm)
-3. config: config that differs to each deploy must be separate from code ie. code can be open source at any moment without risking any credentials 
+3. config: config that differs to each deploy must be separate from code ie. code can be open source at any moment without risking any credentials
 
 ## Sep 14
 
@@ -108,12 +108,12 @@ I would like to keep YOUR_PASSWORD locked down though. So you could also do it w
 
 Delete all rows in table, then run this code in sql editor of supabase dash:
 
-DO $$ 
+DO $$
 DECLARE
     menu_id uuid;
 BEGIN
     -- Cursor to select IDs from the menu table where status is 'Published'
-    FOR menu_id IN (SELECT id FROM menu WHERE status = 'Published') 
+    FOR menu_id IN (SELECT id FROM menu WHERE status = 'Published')
     LOOP
         -- Invoke your publish function for each menu_id
         PERFORM publish(menu_id);
@@ -153,11 +153,11 @@ tags: rush, update, version
 To add an exit node
 tailscale up --exit-node=pr1.tail12c83.ts.net
 
-See the 
+See the
 mtr 1.1.1.1
 
 
-tags: tailscale, network 
+tags: tailscale, network
 
 # Nov 7
 
@@ -189,3 +189,43 @@ go to actions (actions tab, general, all actions view) -> caches
 read the cache key from the end of the “Cache node modules” step (logs)
 
 tags: CI, github, cache, actions
+
+# Feb 23
+
+First check your kernel version, so you won't delete the in-use kernel image, running:
+
+uname -r
+
+Now run this command for a list of installed kernels:
+
+dpkg --list 'linux-image*' | grep ^ii
+
+and delete the kernels you don't want/need anymore by running this:
+
+sudo apt-get remove linux-image-VERSION
+
+Replace VERSION with the version of the kernel you want to remove.
+
+When you're done removing the older kernels, you can run this to remove ever packages you won't need anymore:
+
+sudo apt-get autoremove
+
+And finally you can run this to update grub kernel list:
+
+sudo update-grub
+
+
+tags: linux, boot, kernel
+
+# Mar 1
+
+Edible pgtap flow tips:
+- in order to run the migrations for any db changes you have to run `bash ./migrate_local_db` which requires `docker compose up`
+- when you run `docker compose up -d` and then rushx test:db the db container doesn;t start, you have to take down the first
+- after running a migrations which fails for syntax error run this
+`docker run --rm -v "$PWD:/migrations" --network host migrate/migrate -path /migrations/ -database postgres://postgres:secret@localhost:5432/postgres?sslmode=disable force [N]`
+N being the version that errored out (should be printed in console)
+
+# Apr 23 2025
+Caddy
+CADDY_EMAIL=silviot@gmail.com CLOUDFLARE_API_TOKEN=DBRttmrul0LHRDyXPuav1fnsxGGnBGSmiBUBoOx8 CF_ZONE_ID=e5c43f774ff0f1945ad636cba42ad246 scripts/startCaddy.js
