@@ -227,5 +227,9 @@ Edible pgtap flow tips:
 N being the version that errored out (should be printed in console)
 
 # Apr 23 2025
+
 Caddy
 CADDY_EMAIL=silviot@gmail.com CLOUDFLARE_API_TOKEN=DBRttmrul0LHRDyXPuav1fnsxGGnBGSmiBUBoOx8 CF_ZONE_ID=e5c43f774ff0f1945ad636cba42ad246 scripts/startCaddy.js
+
+Dump
+sqlite3 --init /tmp/crlsqlite.sql ~/librocco/apps/web-client/test-dbs/dev
